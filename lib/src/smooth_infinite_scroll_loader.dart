@@ -36,6 +36,9 @@ class _SmoothInfiniteScrollLoaderState
 
   @override
   Widget build(BuildContext context) {
-    return widget.child ?? const CircularProgressIndicator();
+    return widget.child ??
+        const Center(
+          child: CircularProgressIndicator(),
+        );
   }
 }
