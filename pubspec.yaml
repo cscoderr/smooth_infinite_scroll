@@ -1,11 +1,10 @@
 name: smooth_infinite_scroll
 description: Smooth infinite scroll for Flutter
-version: 0.1.0+1
+version: 0.1.0
 homepage: https://github.com/cscoderr/smooth_infinite_scroll
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
-  flutter: 3.7.0
 
 dependencies:
   flutter:

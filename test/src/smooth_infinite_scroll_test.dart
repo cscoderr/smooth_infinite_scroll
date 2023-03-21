@@ -10,7 +10,7 @@ void main() {
       expect(
         SmoothInfiniteScroll(
           items: const [],
-          item: SizedBox(),
+          itemBuilder: (context, index) => Container(),
         ),
         isNotNull,
       );

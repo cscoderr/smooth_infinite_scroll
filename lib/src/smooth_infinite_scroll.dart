@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:smooth_infinite_scroll/src/smooth_infinite_scroll_loader.dart';
 
 /// {@template smooth_infinite_scroll}
-/// A Very Good Project created by Very Good CLI.
+/// Smooth infinite scroll Class
 /// {@endtemplate}
 class SmoothInfiniteScroll<T> extends StatelessWidget {
   /// {@macro smooth_infinite_scroll}
   const SmoothInfiniteScroll({
     required this.items,
-    required this.item,
+    required this.itemBuilder,
     super.key,
     this.seperator,
     this.loader,
@@ -20,15 +20,44 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
     this.seperatorHeight = 10,
   });
 
+  /// {@macro smooth_infinite_scroll}
+  /// List of items
   final List<T> items;
-  final Widget item;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Widget to be displayed for each item
+  final Widget Function(BuildContext, int) itemBuilder;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Widget to be displayed between each item
   final Widget? seperator;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Height of the default seperator
   final double seperatorHeight;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Widget to be displayed when loading more items
   final Widget? loader;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Callback to be called when loading more items
   final VoidCallback? onLoadMore;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Widget to be displayed when an error occurs
   final Widget? errorWidget;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Widget to be displayed when there are no items
   final Widget? emptyWidget;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Checks if there are more items to be loaded
   final bool hasMore;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Checks if an error occured
   final bool hasError;
 
   @override
@@ -56,7 +85,7 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
                 child: Text('No items'),
               );
         }
-        return item;
+        return itemBuilder(context, index);
       },
       separatorBuilder: (context, index) =>
           seperator ?? SizedBox(height: seperatorHeight),
