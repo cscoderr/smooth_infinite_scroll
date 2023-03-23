@@ -15,6 +15,7 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
     this.onLoadMore,
     this.errorWidget,
     this.emptyWidget,
+    this.scrollDirection = Axis.vertical,
     this.hasMore = false,
     this.hasError = false,
     this.seperatorHeight = 10,
@@ -23,6 +24,10 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
   /// {@macro smooth_infinite_scroll}
   /// List of items
   final List<T> items;
+
+  /// {@macro smooth_infinite_scroll}
+  /// Scroll direction
+  final Axis scrollDirection;
 
   /// {@macro smooth_infinite_scroll}
   /// Widget to be displayed for each item
@@ -63,6 +68,7 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      scrollDirection: scrollDirection,
       itemBuilder: (context, index) {
         if (index == items.length) {
           if (hasError) {
