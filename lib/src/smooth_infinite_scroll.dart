@@ -12,6 +12,7 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
     super.key,
     this.seperator,
     this.loader,
+    this.padding,
     this.onLoadMore,
     this.errorWidget,
     this.emptyWidget,
@@ -24,6 +25,10 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
   /// {@macro smooth_infinite_scroll}
   /// List of items
   final List<T> items;
+
+  // {@macro smooth_infinite_scroll}
+  // Padding to apply for the whole list
+  final EdgeInsetsGeometry? padding;
 
   /// {@macro smooth_infinite_scroll}
   /// Scroll direction
@@ -69,12 +74,13 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       scrollDirection: scrollDirection,
+      padding: padding,
       itemBuilder: (context, index) {
         if (index == items.length) {
           if (hasError) {
             return errorWidget ??
                 const Center(
-                  child: Text('An error occured'),
+                  child: Text('An error occurred'),
                 );
           }
           if (hasMore) {
@@ -88,7 +94,7 @@ class SmoothInfiniteScroll<T> extends StatelessWidget {
         if (items.isEmpty) {
           return emptyWidget ??
               const Center(
-                child: Text('No items'),
+                child: Text('No item available'),
               );
         }
         return itemBuilder(context, index);
